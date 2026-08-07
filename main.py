@@ -4,6 +4,13 @@ import glob
         
 import os
 
+from colorama import Fore, Back, Style
+#print(Fore.RED + 'some red text')
+#print(Back.GREEN + 'and with a green background')
+#print(Style.DIM + 'and in dim text')
+#print(Style.RESET_ALL)
+#print('back to normal now')
+
 from pathlib import Path
 Path("./saves").mkdir(parents=True, exist_ok=True)
 
@@ -19,7 +26,7 @@ messages = [msg, msg2, msg3]
 
 # this will print random between 0 and 1
 
-advanceText = input ("--DISCLAIMER--\n this game may seem like it is trying to show all of the downsides of gambling.\n but this is not the message we would like to send, this game is made to STRONGLY ENCOURAGE \n gambling at all times \n <e to understand> ")
+advanceText = input (Fore.RED + "--DISCLAIMER--\n this game may seem like it is trying to show all of the downsides of gambling.\n but this is not the message we would like to send, this game is made to STRONGLY ENCOURAGE \n gambling at all times \n"  + Style.RESET_ALL + "<e to understand>")
 
 if advanceText != "e":
     print ("oh i see how it is, one day youll learn your lesson (:<")
@@ -128,7 +135,7 @@ while True:
                 luck += 2
                 score -= 5
             else:
-                print ("you don't have enough points to buy that")
+                print (Fore.RED + "you don't have enough points to buy that" + Style.RESET_ALL)
         elif shopInput == "2":
             if score >= 5:
                 if felonycount >= 1:
@@ -138,9 +145,9 @@ while True:
                 else:
                     print("thankfully you dont actually have any felonies")
             else:
-                print ("you don't have enough points to buy that")
+                print (Fore.RED + "you don't have enough points to buy that" + Style.RESET_ALL)
         elif shopInput == "3":
-            print ("\nthe alien dog looks at you at you with pleading eyes. its green.\nyou pet it...\nsuprisingly it makes a dog noise\n")
+            print ("\nthe alien dog looks at you at you with pleading eyes. its " + Fore.GREEN + "green"  + Style.RESET_ALL + "\nyou pet it...\nsuprisingly it makes a dog noise\n")
     else:
         userNumber = input("type a number 1-5 or a command: ")
 
@@ -149,8 +156,8 @@ while True:
             if userNumber == "help":
                 print("\n")
                 for key, value in gamblecommands.items():
-                    print(f"{key}: {value}")
-                print("\n")
+                    print(Fore.GREEN + f"{key}: {value}")
+                print("\n" + Style.RESET_ALL)
                 
 
             elif userNumber == "printm":
@@ -182,16 +189,16 @@ while True:
 
 
             elif userNumber == "shop":
-                print ("welcome to the shoop")
+                print (Fore.BLUE + "welcome to the shoop")
                 print("\n")
                 for key, value in shopitems.items():
                     print(f"{key}: {value}")
-                print("\n")
+                print("\n" + Style.RESET_ALL)
 
                 shopping = True
 
             else:
-                print(f"to our unfortunate regret, {userNumber} is not a valid command ): \nthis error has automatically been ignored by our nonexistent feedback team")
+                print( Fore.RED + f"to our unfortunate regret, {userNumber} is not a valid command ): \nthis error has automatically been ignored by our nonexistent feedback team" + Style.RESET_ALL)
 
         else:
             for i in range(luck): #REALLY DUMB ERROR ejfgeiyufweyivfuetyb - not anymore! thanks python for fixing yourself over the course of 2 weeks of being left on by accident :D
@@ -219,6 +226,6 @@ while True:
             hour = 0
             day += 1
             print("\n~the dawn of the new day begins~\n")
-            with open(f"./saves/save{day}.txt", "w") as file:
+            with open(f"./saves/save{day}-{name}.txt", "w") as file:
                 file.write(f"score~{score},day~{day},felonycount~{felonycount},luck~{luck},name~{name}")
             print("(saved!)")
