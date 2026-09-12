@@ -18,9 +18,10 @@ msg = "time to gamble gamble gamble"
 msg2 = "ready to gamble?"
 msg3 = "lets go gambling!!!"
 msg4 = "let the gambling begin!"
+msg5 = "0/10 doctors suggest gambling!"
 
 # messages is an array that contains msg and msg2
-messages = [msg, msg2, msg3]
+messages = [msg, msg2, msg3, msg4, msg5]
 
 # print(msg)
 
@@ -49,6 +50,10 @@ luck = 4
 
 score = 0
 
+lastnumberused = 1
+
+lastnumberusedcount = 0
+
 load = input ("\nenter 'load' to load your save file: ")
 if load == "load":
     list_of_files = glob.glob('./saves/*.txt') #comment was here :P
@@ -64,13 +69,13 @@ if load == "load":
             print(thing)
             x = thing.split("~")
             if x[0] == "score":
-                score = x[1]
+                score = int(x[1])
             if x[0] == "luck":
-                luck = x[1]
+                luck = int(x[1])
             if x[0] == "day":
-                day = x[1]
+                day = int(x[1])
             if x [0] == "felonycount":
-                felonycount = x[1]
+                felonycount = int(x[1])
             if x[0] == "name":
                 name = x[1]
         
@@ -100,7 +105,7 @@ if woahloadedgame == 0:
 #i dont really like that cutscene, the first part ends up having no meaning at all and it feels dumb with it having not impact /:
 
 
-print(messages[np.random.randint(0,3)])
+print(messages[np.random.randint(0,5)])
 
 print("remember to type 'help' for a totally usele-- i mean handy dandy useful list of commands :D")
 
@@ -201,7 +206,7 @@ while True:
                 print( Fore.RED + f"to our unfortunate regret, {userNumber} is not a valid command ): \nthis error has automatically been ignored by our nonexistent feedback team" + Style.RESET_ALL)
 
         else:
-            for i in range(luck): #REALLY DUMB ERROR ejfgeiyufweyivfuetyb - not anymore! thanks python for fixing yourself over the course of 2 weeks of being left on by accident :D
+            for i in range(luck):
                 number = np.random.randint(1,6)
 
                 if (number==int(userNumber)): 
@@ -210,6 +215,10 @@ while True:
             if howmanyrollsaresplendid > 0: 
                 print(f"you won {howmanyrollsaresplendid} times")
                 score += howmanyrollsaresplendid
+                print (f"{lastnumberusedcount}")
+                print (f"{score}")
+                if score >= lastnumberusedcount:
+                    score -= lastnumberusedcount
             else:
                 print(f"you lost!")
                 score -= 2
@@ -219,6 +228,15 @@ while True:
             print(f"your score is {score}")
 
             howmanyrollsaresplendid = 0
+
+            if lastnumberused == userNumber:
+                lastnumberusedcount += 1
+            else:
+                lastnumberusedcount = 0
+
+            lastnumberused = userNumber
+
+            print (f"{lastnumberusedcount}")
     
     if shopping == 0:
         hour += 1
