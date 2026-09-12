@@ -204,7 +204,7 @@ while True:
 
             else:
                 print( Fore.RED + f"to our unfortunate regret, {userNumber} is not a valid command ): \nthis error has automatically been ignored by our nonexistent feedback team" + Style.RESET_ALL)
-
+                hour =- 1
         else:
             for i in range(luck):
                 number = np.random.randint(1,6)
@@ -215,10 +215,6 @@ while True:
             if howmanyrollsaresplendid > 0: 
                 print(f"you won {howmanyrollsaresplendid} times")
                 score += howmanyrollsaresplendid
-                print (f"{lastnumberusedcount}")
-                print (f"{score}")
-                if score >= lastnumberusedcount:
-                    score -= lastnumberusedcount
             else:
                 print(f"you lost!")
                 score -= 2
@@ -235,8 +231,6 @@ while True:
                 lastnumberusedcount = 0
 
             lastnumberused = userNumber
-
-            print (f"{lastnumberusedcount}")
     
     if shopping == 0:
         hour += 1
