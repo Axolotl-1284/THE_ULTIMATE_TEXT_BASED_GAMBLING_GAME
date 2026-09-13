@@ -4,6 +4,8 @@ import glob
         
 import os
 
+import time
+
 from colorama import Fore, Back, Style
 #print(Fore.RED + 'some red text')
 #print(Back.GREEN + 'and with a green background')
@@ -163,7 +165,15 @@ while True:
                 for key, value in gamblecommands.items():
                     print(Fore.GREEN + f"{key}: {value}")
                 print("\n" + Style.RESET_ALL)
-                
+
+            elif userNumber == "sleep":
+                print ("sleepy time begins... :)")
+                for i in range(3):
+                    time.sleep(1)
+                    print ("z",end='')
+                time.sleep(1)
+                print ("\ngood morning... or night")
+
 
             elif userNumber == "printm":
                 print ("\nyou printed 5 americandollar.pngs!!")
